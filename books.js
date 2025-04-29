@@ -9,7 +9,7 @@ import fs from "fs";
 
   const result = await page.evaluate(async () => {
     await new Promise((resolve) => {
-      const distance = 1000;
+      const distance = 100;
       let scrolledAmount = 0;
 
       const interval = setInterval(() => {
@@ -26,14 +26,14 @@ import fs from "fs";
     const books = [];
     const booksQuery = document.querySelectorAll("h3 > a");
     const pricesQuery = document.querySelectorAll(".price_color");
-    const availbeQuery = document.querySelectorAll(".instock");
+    const imageSrcQuery = document.querySelectorAll(".thumbnail")
 
     for (let i = 0; i < booksQuery.length; i++) {
       books.push({
-        src: booksQuery[i].href,
+        href: booksQuery[i].href,
         title: booksQuery[i].title,
         price: pricesQuery[i].textContent,
-        status: availbeQuery[i]?.textContent.trim(),
+        imgSrc: imageSrcQuery[i].src
       });
     }
 
